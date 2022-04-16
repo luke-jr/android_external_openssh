@@ -1,4 +1,4 @@
-/* $OpenBSD: kexdh.c,v 1.32 2019/01/21 10:40:11 djm Exp $ */
+/* $OpenBSD: kexdh.c,v 1.34 2020/12/04 02:29:25 djm Exp $ */
 /*
  * Copyright (c) 2019 Markus Friedl.  All rights reserved.
  *
@@ -193,6 +193,7 @@ kex_dh_dec(struct kex *kex, const struct sshbuf *dh_blob,
 	*shared_secretp = buf;
 	buf = NULL;
  out:
+	BN_free(dh_pub);
 	DH_free(kex->dh);
 	kex->dh = NULL;
 	sshbuf_free(buf);
