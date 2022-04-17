@@ -120,10 +120,12 @@ cc_library {
         "packet.c",
         "platform-misc.c",
         "platform-pledge.c",
+        "platform-tracing.c",
         "poly1305.c",
         "readpass.c",
         "rijndael.c",
         "sc25519.c",
+        "sftp-realpath.c",
         "sntrup761.c",
         "smult_curve25519_ref.c",
         "ssh-dss.c",
@@ -179,6 +181,18 @@ cc_binary {
 }
 
 cc_binary {
+    name: "sftp-server",
+    defaults: ["ssh_defaults"],
+    srcs: [
+        "sftp-common.c",
+        "sftp-server.c",
+        "sftp-server-main.c",
+    ],
+    shared_libs: ["libssh"],
+    relative_install_path: "ssh-subsystem",
+}
+
+cc_binary {
     name: "scp",
     defaults: ["ssh_defaults"],
     srcs: [
@@ -222,7 +236,6 @@ cc_binary {
         "monitor.c",
         "monitor_wrap.c",
         "platform.c",
-        "platform-tracing.c",
         "sandbox-null.c",
         "sandbox-rlimit.c",
         "sandbox-systrace.c",
@@ -230,7 +243,6 @@ cc_binary {
         "serverloop.c",
         "session.c",
         "sftp-common.c",
-        "sftp-realpath.c",
         "sftp-server.c",
         "srclimit.c",
         "sshd.c",

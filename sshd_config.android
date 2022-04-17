@@ -3,3 +3,4 @@ HostKey /data/ssh/ssh_host_rsa_key
 HostKey /data/ssh/ssh_host_dsa_key
 AuthorizedKeysFile /data/ssh/authorized_keys
 PasswordAuthentication no
+Subsystem sftp /system/bin/ssh-subsystem/sftp-server
